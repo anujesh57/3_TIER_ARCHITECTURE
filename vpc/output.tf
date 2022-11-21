@@ -14,3 +14,9 @@ output "sgid" {
 output "vpcid" {
   value = aws_vpc.main.id
 }
+output "websubnet1" {
+  value = aws_subnet.main-1.id
+}
+output "websubnet2" {
+  value = aws_subnet.main-2.id
+}

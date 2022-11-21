@@ -2,22 +2,22 @@ resource "aws_lb" "App-alb" {
   name               = "App-LB"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.websg.id]
-  subnets            = [aws_subnet.main-1.id, aws_subnet.main-2.id]
+  security_groups    = var.websgid
+  subnets            = var.websubnet
 }
 
 resource "aws_lb_target_group" "target-elb" {
   name     = "ALB-TG"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = "${var.vpc_id}"
+  vpc_id   = var.vpcid
 }
 
 resource "aws_launch_configuration" "foobar" {
   name_prefix   = "assign"
   image_id      = "ami-0c48a1446ab9336f8"
   instance_type = "t2.micro"
-  security_groups = [aws_security_group.websg.id]
+  security_groups = var.websgid
   associate_public_ip_address = true
 }
 
@@ -27,7 +27,7 @@ resource "aws_autoscaling_group" "bar" {
   max_size           = 3
   min_size           = 1
   health_check_grace_period = 300
-  vpc_zone_identifier = [aws_subnet.main-1.id, aws_subnet.main-2.id]
+  vpc_zone_identifier = var.websubnet
   launch_configuration = aws_launch_configuration.foobar.name
   health_check_type   = "ELB"
 }
