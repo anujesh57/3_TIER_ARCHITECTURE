@@ -18,10 +18,10 @@ resource "aws_subnet" "main-2" {
 
 }
 
-resource "aws_db_subnet_group" "default" {
-  name       = "main"
-  subnet_ids = [aws_subnet.databasesub-1.id, aws_subnet.databasesub-2.id]
-}
+# resource "aws_db_subnet_group" "default" {
+#   name       = "main"
+#   subnet_ids = [aws_subnet.databasesub-1.id, aws_subnet.databasesub-2.id]
+# }
 
 
 resource "aws_subnet" "databasesub-1" {

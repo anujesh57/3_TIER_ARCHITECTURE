@@ -15,7 +15,7 @@ resource "aws_lb_target_group" "target-elb" {
 
 resource "aws_launch_configuration" "foobar" {
   name_prefix   = "assign"
-  image_id      = "ami-0c48a1446ab9336f8"
+  image_id      = "ami-0535d910c0c8a6c4a"
   instance_type = "t2.micro"
   security_groups = var.websgid
   associate_public_ip_address = true
